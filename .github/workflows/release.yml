@@ -27,5 +27,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          file: ./
+          pull: true
+          file: Dockerfile.multistage
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/quarkus-demo:latest,${{ secrets.DOCKERHUB_USERNAME }}/quarkus-demo:$GITHUB_SHA
