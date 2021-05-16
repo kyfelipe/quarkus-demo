@@ -1,0 +1,36 @@
+version: '3.7'
+services: 
+  quarkus:
+    build:
+      context: .
+      dockerfile: Dockerfile.multistage
+    image: quarkus-demo
+    container_name: quarkus-demo
+    mem_limit: 128m
+    ports: 
+      - 8080:8080
+    environment:
+      DB_USER: user
+      DB_PASS: password
+      DB_URL: vertx-reactive:postgresql://postgres-db/db
+      DB_NAME: db
+    depends_on:
+      - postgres
+    networks:
+      - quarkus
+  postgres:
+    image: postgres:11.5
+    container_name: postgres-db
+    mem_limit: 128m
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    ports:
+      - 5432:5432
+    networks:
+      - quarkus
+
+networks:
+  quarkus:
+    driver: bridge
