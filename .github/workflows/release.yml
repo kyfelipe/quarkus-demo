@@ -28,4 +28,4 @@ jobs:
         with:
           push: true
           file: ./
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/quarkus-demo:latest,${{ secrets.DOCKERHUB_USERNAME }}/quarkus-demo:${{ GITHUB_SHA }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/quarkus-demo:latest,${{ secrets.DOCKERHUB_USERNAME }}/quarkus-demo:${GITHUB_SHA}
