@@ -1,0 +1,48 @@
+replicaCount: 1
+
+image:
+  repository: kyfelipe/quarkus-demo
+  pullPolicy: IfNotPresent
+  # Update tag in pipeline
+  tag: latest
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+podAnnotations: {}
+podSecurityContext: {}
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 1024Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+  # targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+# Update in pipeline
+secret:
+  enabled: true
+  data:
+    DB_URL: ""
+    DB_USER: ""
+    DB_PASS: ""

@@ -13,7 +13,6 @@ services:
       DB_USER: user
       DB_PASS: password
       DB_URL: vertx-reactive:postgresql://postgres-db/db
-      DB_NAME: db
     depends_on:
       - postgres
     networks:
